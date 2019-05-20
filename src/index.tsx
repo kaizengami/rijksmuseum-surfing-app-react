@@ -1,12 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./scss/index.scss";
 import App from "./components/App";
-//import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from "react-router-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const initialState = {
+  cardsData: ""
+};
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-//serviceWorker.unregister();
+const rootReducer = (state = initialState, action: any) => {
+  return state;
+};
+
+const store = createStore(rootReducer);
+
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById("root")
+);
