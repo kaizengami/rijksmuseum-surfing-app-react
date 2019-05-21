@@ -2,13 +2,13 @@ import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import { connect } from "react-redux";
+
 import { getCards } from "../utils/api";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-import Cards from "./Main/Cards";
-import PopUp from "./Main/PopUp";
-import DetailsPage from "./Main/DetailsPage";
+import CardsContainer from "./Page/Cards/CardsContainer";
+import PopUp from "./Page/PopUp/PopUp";
+import DetailsPage from "./Page/DetailsPage/DetailsPage";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -54,14 +54,12 @@ const MainWrapper = styled.main`
   padding: 10px;
 `;
 
-const ACTION_PUT_CARDS_DATA = "ACTION_PUT_CARDS_DATA";
-
-const actionPutCardsData = {
-  type: ACTION_PUT_CARDS_DATA,
-  payload: null
-};
-
-interface Props {}
+interface Props {
+  putCardsData: any;
+  setLoadingState: any;
+  store: any;
+  isLoading: boolean;
+}
 
 interface State {}
 
@@ -73,8 +71,15 @@ class App extends Component<Props, State> {
   }
 
   async componentDidMount() {
+    this.props.setLoadingState(true);
     let cards = await getCards();
+    this.props.putCardsData(cards);
+    this.props.setLoadingState(false);
   }
+
+  cardsPage = () => {
+    return <CardsContainer isLoading cardsData />;
+  };
 
   render() {
     console.log(this.props);
@@ -85,7 +90,7 @@ class App extends Component<Props, State> {
           <Header />
           <MainWrapper>
             <Switch>
-              <Route exact path="/" component={Cards} />
+              <Route exact path="/" render={this.cardsPage} />
               <Route path="/popup" component={PopUp} />
               <Route path="/detailspage" component={DetailsPage} />
             </Switch>

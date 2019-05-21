@@ -7,7 +7,10 @@ const Wrapper = styled.header`
   text-align: center;
 `;
 
-interface Props {}
+interface Props {
+  isLoading: boolean;
+  cardsData: any;
+}
 
 interface State {}
 
@@ -19,11 +22,18 @@ class Cards extends Component<Props, State> {
   }
 
   render() {
+    console.log(this.props.cardsData);
     return (
       <>
         <Wrapper>
-          Cards
-          <Link to="/detailspage">details page</Link>
+          {this.props.isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              Cards
+              <Link to="/detailspage">details page</Link>
+            </>
+          )}
         </Wrapper>
       </>
     );
