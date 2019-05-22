@@ -1,21 +1,14 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+
 import { Link } from "react-router-dom";
+import Card from "./Card/Card";
+import { Spinner } from "../../LoadingAnimation";
 
-const Wrapper = styled.header`
-  width: 100%;
-  text-align: center;
-`;
-
-interface Props {
-  isLoading: boolean;
-  cardsData: any;
-}
-
-interface State {}
+import { CardsWrapper } from "./cards.styles";
+import { Props, State } from "./cards.interface";
 
 class Cards extends Component<Props, State> {
-  constructor(props: any) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {};
@@ -25,16 +18,19 @@ class Cards extends Component<Props, State> {
     console.log(this.props.cardsData);
     return (
       <>
-        <Wrapper>
+        <CardsWrapper>
           {this.props.isLoading ? (
-            <div>Loading...</div>
+            <Spinner />
           ) : (
             <>
-              Cards
+              {this.props.cardsData &&
+                this.props.cardsData.map((cardData: any) => (
+                  <Card cardData={cardData} key={cardData.objectNumber} />
+                ))}
               <Link to="/detailspage">details page</Link>
             </>
           )}
-        </Wrapper>
+        </CardsWrapper>
       </>
     );
   }

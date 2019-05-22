@@ -5,6 +5,13 @@ const defaultState = {
   isLoading: false
 };
 
+// const putCarsData = (state, carsData) => {
+//   return {
+//     ...state,
+//     carsData,
+//   }
+// }
+
 export const appReducer = (state = defaultState, action) => {
   switch (action.type) {
     case PUT_CARDS_DATA:

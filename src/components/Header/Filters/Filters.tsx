@@ -1,10 +1,14 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+import SearchContainer from "./Search/SearchContainer";
+
+const FiltersWrapper = styled.div``;
 
 interface Props {}
 
 interface State {}
 
-class Header extends Component<Props, State> {
+class Filters extends Component<Props, State> {
   constructor(props: any) {
     super(props);
 
@@ -12,8 +16,12 @@ class Header extends Component<Props, State> {
   }
 
   render() {
-    return <div className="header">header</div>;
+    return (
+      <FiltersWrapper>
+        <SearchContainer />
+      </FiltersWrapper>
+    );
   }
 }
 
-export default Header;
+export default Filters;

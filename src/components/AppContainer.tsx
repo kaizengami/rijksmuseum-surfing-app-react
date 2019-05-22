@@ -4,7 +4,29 @@ import { connect } from "react-redux";
 import App from "./App";
 import { putCardsData, setLoadingState } from "./app.actions";
 
-class AppContainer extends Component {
+interface Props {
+  putCardsData(value: CardsData): object;
+  setLoadingState(value: boolean): object;
+  cardsData: object;
+  isLoading: boolean;
+}
+
+interface CardsData {
+  id: string;
+  objectNumber: string;
+  longTitle: string;
+  headerImage: {
+    url: string;
+  };
+}
+
+interface State {}
+
+class AppContainer extends Component<Props, State> {
+  // componentDidMount = () => {
+  //   this.props.dispatch({ type: "HELLO_THERE", payload: { "1": "1111" } });
+  // };
+
   render() {
     return (
       <App
@@ -17,7 +39,7 @@ class AppContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     cardsData: state.app.cardsData,
     isLoading: state.app.isLoading
