@@ -1,29 +1,30 @@
 import { PUT_CARDS_DATA, SET_LOADING_STATE } from "./app.actions";
 
 const defaultState = {
-  data: [],
+  cardsData: [],
   isLoading: false
 };
 
-// const putCarsData = (state, carsData) => {
-//   return {
-//     ...state,
-//     carsData,
-//   }
-// }
+function putCardsData(state, carsData) {
+  return {
+    ...state,
+    cardsData: carsData.payload
+  };
+}
+
+function setLoadingState(state, loadingState) {
+  return {
+    ...state,
+    isLoading: loadingState.payload
+  };
+}
 
 export const appReducer = (state = defaultState, action) => {
   switch (action.type) {
     case PUT_CARDS_DATA:
-      return {
-        ...state,
-        cardsData: action.payload
-      };
+      return putCardsData(state, action);
     case SET_LOADING_STATE:
-      return {
-        ...state,
-        isLoading: action.payload
-      };
+      return setLoadingState(state, action);
   }
   return state;
 };

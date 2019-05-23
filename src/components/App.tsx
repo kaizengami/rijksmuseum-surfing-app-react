@@ -27,7 +27,7 @@ class App extends Component<Props, State> {
   }
 
   cardsPage = () => {
-    return <CardsContainer isLoading cardsData />;
+    return <CardsContainer />;
   };
 
   render() {
@@ -43,6 +43,7 @@ class App extends Component<Props, State> {
               <Route path="/detailspage" component={DetailsPage} />
             </Switch>
           </PageWrapper>
+          <PopUp />
           <Footer />
         </AppWrapper>
       </>

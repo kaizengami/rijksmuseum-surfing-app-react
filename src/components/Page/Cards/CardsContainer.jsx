@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Cards from "./Cards";
-//import { } from "./cards.actions";
+import { getСardsData, getIsLoadingState } from "../../../store/selectors";
 
 class CardsContainer extends Component {
   render() {
@@ -17,8 +17,8 @@ class CardsContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    cardsData: state.app.cardsData,
-    isLoading: state.app.isLoading
+    cardsData: getСardsData(state),
+    isLoading: getIsLoadingState(state)
   };
 };
 

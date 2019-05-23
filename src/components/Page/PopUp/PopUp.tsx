@@ -1,9 +1,18 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import styled from "styled-components";
 
-const Wrapper = styled.header`
-  width: 100%;
+const Wrapper = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 200px;
+  background-color: aqua;
   text-align: center;
+  font-size: 30px;
+  opacity: 0.2;
 `;
 
 interface Props {}
@@ -18,11 +27,7 @@ class PopUp extends Component<Props, State> {
   }
 
   render() {
-    return (
-      <>
-        <Wrapper>Pop-up</Wrapper>
-      </>
-    );
+    return ReactDOM.createPortal(<Wrapper>Pop-up</Wrapper>, document.body);
   }
 }
 

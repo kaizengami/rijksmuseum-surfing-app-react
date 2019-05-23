@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import App from "./App";
 import { putCardsData, setLoadingState } from "./app.actions";
+import { getСardsData, getIsLoadingState } from "../store/selectors";
 
 interface Props {
   putCardsData(value: CardsData): object;
@@ -41,8 +42,8 @@ class AppContainer extends Component<Props, State> {
 
 const mapStateToProps = (state: any) => {
   return {
-    cardsData: state.app.cardsData,
-    isLoading: state.app.isLoading
+    cardsData: getСardsData(state),
+    isLoading: getIsLoadingState(state)
   };
 };
 

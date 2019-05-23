@@ -1,8 +1,14 @@
+import { getFiltersSettings } from "./getFiltersSettings";
+
 const API_KEY = "0zZyVckt";
 
 const getCollection = async (cards = 10) => {
+  let filters = getFiltersSettings();
+  console.log(filters);
+
   let cardsPerPage = cards;
-  const COLLECTION_API_LINK = `https://www.rijksmuseum.nl/api/nl/collection?key=${API_KEY}&format=json&ps=${cardsPerPage}`;
+  const COLLECTION_API_LINK = `https://www.rijksmuseum.nl/api/nl/collection?key=${API_KEY}&format=json&ps=${cardsPerPage}
+  &q=${filters.keyword}`;
   try {
     const response = await fetch(COLLECTION_API_LINK);
     if (!response.ok) {
@@ -32,3 +38,4 @@ const getCollectionDetails = async (objectNumber: string) => {
 };
 
 export { getCollection as getCards, getCollectionDetails as getCardDetails };
+//export default function connect(mapStateToProps, mapDispatchToProps)(log);

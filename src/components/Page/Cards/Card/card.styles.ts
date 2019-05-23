@@ -4,7 +4,6 @@ export const CardWrapper = styled.div`
   width: 460px;
   height: 120px;
   padding-bottom: 50px;
-  cursor: pointer;
 `;
 
 export const LongTitle = styled.div`
@@ -30,7 +29,10 @@ export const HeaderImage = styled<any>("div")`
   background-position: center center;
   background-image: ${(props: any) => `url(${props.background})`};
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
   &:hover + ${LongTitle} {
     opacity: 1;
   }
 `;
+
+export const CardLink = styled<any>("a")``;

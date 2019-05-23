@@ -25,7 +25,7 @@ export const SearchInput = styled.input`
   }
   &:before {
     position: absolute;
-    content: "asd 	&#8981;";
+    content: "&#8981;";
   }
 `;
 

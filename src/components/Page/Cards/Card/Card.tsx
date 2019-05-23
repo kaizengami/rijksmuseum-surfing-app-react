@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { CardWrapper, HeaderImage, LongTitle } from "./card.styles";
+import { CardWrapper, HeaderImage, LongTitle, CardLink } from "./card.styles";
 import { Props, State } from "./card.interface";
 
 class Card extends Component<Props, State> {
@@ -10,16 +10,26 @@ class Card extends Component<Props, State> {
     this.state = {};
   }
 
+  onClickCard = (e: any) => {
+    let objectNumber = e.target.closest("a");
+    console.log(objectNumber.name);
+  };
+
   render() {
     const {
       headerImage: { url },
-      longTitle
+      longTitle,
+      objectNumber
     } = this.props.cardData;
-
     return (
       <>
         <CardWrapper>
-          <HeaderImage background={url} />
+          <CardLink
+            name={objectNumber}
+            onClick={(e: any) => this.onClickCard(e)}
+          >
+            <HeaderImage background={url} />
+          </CardLink>
           <LongTitle>{longTitle}</LongTitle>
         </CardWrapper>
       </>
