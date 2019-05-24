@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Card from "./Card/Card";
+
+//import CardContainer from "./Card/CardContainer";
 import { Spinner } from "../../LoadingAnimation";
 
 import { CardsWrapper } from "./cards.styles";
 import { Props, State } from "./cards.interface";
+import Card from "./Card/Card";
+
+import { setPopUpIsVisibleState, setPopUpData } from "../PopUp/popup.actions";
 
 class Cards extends Component<Props, State> {
   constructor(props: Props) {
@@ -18,14 +22,24 @@ class Cards extends Component<Props, State> {
     console.log(this.props.cardsData);
     return (
       <>
-        <CardsWrapper>
+        <CardsWrapper isPopUpVisible={this.props.isPopUpVisible}>
           {this.props.isLoading ? (
             <Spinner />
           ) : (
             <>
               {this.props.cardsData &&
+                this.props.cardsData.length &&
                 this.props.cardsData.map((cardData: any) => (
-                  <Card cardData={cardData} key={cardData.objectNumber} />
+                  <Card
+                    cardData={cardData}
+                    setPopUpIsVisibleState={this.props.setPopUpIsVisibleState}
+                    setPopUpData={this.props.setPopUpData}
+                    key={cardData.objectNumber}
+                  />
+                  // <CardContainer
+                  //   cardData={cardData}
+                  //   key={cardData.objectNumber}
+                  // />
                 ))}
               <Link to="/detailspage">details page</Link>
             </>
@@ -36,4 +50,12 @@ class Cards extends Component<Props, State> {
   }
 }
 
-export default Cards;
+const mapDispatchToProps = {
+  setPopUpIsVisibleState,
+  setPopUpData
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Cards);

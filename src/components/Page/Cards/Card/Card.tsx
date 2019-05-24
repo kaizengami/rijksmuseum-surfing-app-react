@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { store } from "../../../../index";
+import { getCardDetails } from "../../../../utils/api";
 
 import { CardWrapper, HeaderImage, LongTitle, CardLink } from "./card.styles";
 import { Props, State } from "./card.interface";
@@ -10,10 +13,17 @@ class Card extends Component<Props, State> {
     this.state = {};
   }
 
-  onClickCard = (e: any) => {
-    let objectNumber = e.target.closest("a");
-    console.log(objectNumber.name);
+  onClickCard = (e: any, fakeObjectNumber: string) => {
+    // let objectNumber = e.target.closest("a");
+    // console.log(objectNumber.name);
+    this.updatePopUp(fakeObjectNumber);
   };
+
+  async updatePopUp(objectNumber: string) {
+    let popUpData = await getCardDetails(objectNumber);
+    this.props.setPopUpData(popUpData);
+    this.props.setPopUpIsVisibleState(true);
+  }
 
   render() {
     const {
@@ -26,7 +36,7 @@ class Card extends Component<Props, State> {
         <CardWrapper>
           <CardLink
             name={objectNumber}
-            onClick={(e: any) => this.onClickCard(e)}
+            onClick={(e: any) => this.onClickCard(e, objectNumber)}
           >
             <HeaderImage background={url} />
           </CardLink>
@@ -37,4 +47,5 @@ class Card extends Component<Props, State> {
   }
 }
 
-export default Card;
+//export default Card;
+export default connect()(Card);

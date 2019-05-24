@@ -6,7 +6,7 @@ import { getCards } from "../utils/api";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import CardsContainer from "./Page/Cards/CardsContainer";
-import PopUp from "./Page/PopUp/PopUp";
+import PopUpContainer from "./Page/PopUp/PopUpContainer";
 import DetailsPage from "./Page/DetailsPage/DetailsPage";
 
 import { Props, State } from "./app.interface";
@@ -39,11 +39,10 @@ class App extends Component<Props, State> {
           <PageWrapper>
             <Switch>
               <Route exact path="/" render={this.cardsPage} />
-              <Route path="/popup" component={PopUp} />
               <Route path="/detailspage" component={DetailsPage} />
             </Switch>
           </PageWrapper>
-          <PopUp />
+          <PopUpContainer />
           <Footer />
         </AppWrapper>
       </>

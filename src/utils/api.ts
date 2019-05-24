@@ -4,7 +4,6 @@ const API_KEY = "0zZyVckt";
 
 const getCollection = async (cards = 10) => {
   let filters = getFiltersSettings();
-  console.log(filters);
 
   let cardsPerPage = cards;
   const COLLECTION_API_LINK = `https://www.rijksmuseum.nl/api/nl/collection?key=${API_KEY}&format=json&ps=${cardsPerPage}

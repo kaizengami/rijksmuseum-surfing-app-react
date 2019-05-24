@@ -1,21 +1,13 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import styled from "styled-components";
+import { connect } from "react-redux";
+import { store } from "../../../index";
 
-const Wrapper = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 200px;
-  background-color: aqua;
-  text-align: center;
-  font-size: 30px;
-  opacity: 0.2;
-`;
+import { PopUpWrapper, Image, BottomButtons, Button } from "./popup.styles";
 
-interface Props {}
+interface Props {
+  isVisible: boolean;
+}
 
 interface State {}
 
@@ -26,9 +18,45 @@ class PopUp extends Component<Props, State> {
     this.state = {};
   }
 
+  onClickClose = (e: any) => {
+    console.log("close popup " + e.target.value);
+    store.dispatch({ type: "SET_POPUP_ISVISIBLE_STATE", payload: false });
+  };
+  onClickShowDetails = (e: any) => {
+    console.log("Show Details");
+    //hashHistory.push("/detailspage");
+    //store.dispatch({ type: "SET_POPUP_ISVISIBLE_STATE", payload: false });
+  };
+
   render() {
-    return ReactDOM.createPortal(<Wrapper>Pop-up</Wrapper>, document.body);
+    let storeData = store.getState();
+    let popUpData = storeData.popUp.popUpData;
+    let imageUrl;
+    if (popUpData != null) {
+      imageUrl = popUpData.webImage.url;
+    }
+    //let url = popUpData.webImage.url
+    console.log(popUpData);
+    return this.props.isVisible
+      ? ReactDOM.createPortal(
+          <PopUpWrapper>
+            <Image src={imageUrl} />
+            <BottomButtons>
+              <Button value="close" onClick={(e: any) => this.onClickClose(e)}>
+                close
+              </Button>
+              <Button
+                value="close"
+                onClick={(e: any) => this.onClickShowDetails(e)}
+              >
+                view details
+              </Button>
+            </BottomButtons>
+          </PopUpWrapper>,
+          document.body
+        )
+      : null;
   }
 }
 
-export default PopUp;
+export default connect()(PopUp);

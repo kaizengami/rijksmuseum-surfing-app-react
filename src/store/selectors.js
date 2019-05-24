@@ -24,3 +24,11 @@ export function getIsLoadingState(state) {
 export function getFiltersKeyword(state) {
   return state.filters.keyword;
 }
+
+export function getPopUpIsVisibleState(state) {
+  return state.popUp.isVisible;
+}
+
+export function getPopUpData(state) {
+  return state.popUp.popUpData;
+}
