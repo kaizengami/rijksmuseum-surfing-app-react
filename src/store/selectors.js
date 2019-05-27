@@ -13,6 +13,14 @@
 // var exports = module.exports = {}
 //module.exports = selectors;
 
+export function getCollectionIsLoading(state) {
+  return state.saga.loading;
+}
+
+export function getCollectionData(state) {
+  return state.saga.data;
+}
+
 export function getСardsData(state) {
   return state.app.cardsData;
 }

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { store } from "../../../../index";
-import { getCardDetails } from "../../../../utils/api";
+//import { store } from "../../../../index";
+import { getCardDetails } from "utils/api";
+import { fetchCollectionDetails } from "sagas/sagas.actions";
 
 import { CardWrapper, HeaderImage, LongTitle, CardLink } from "./card.styles";
 import { Props, State } from "./card.interface";
@@ -22,6 +23,8 @@ class Card extends Component<Props, State> {
   async updatePopUp(objectNumber: string) {
     let popUpData = await getCardDetails(objectNumber);
     this.props.setPopUpData(popUpData);
+
+    //this.props.dispatch(fetchCollectionDetails(objectNumber));
     this.props.setPopUpIsVisibleState(true);
   }
 

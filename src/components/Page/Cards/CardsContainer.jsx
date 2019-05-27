@@ -3,18 +3,18 @@ import { connect } from "react-redux";
 
 import Cards from "./Cards";
 import {
-  getСardsData,
-  getIsLoadingState,
-  getPopUpIsVisibleState
-} from "../../../store/selectors";
+  getPopUpIsVisibleState,
+  getCollectionData,
+  getCollectionIsLoading
+} from "store/selectors";
 
 class CardsContainer extends Component {
   render() {
     return (
       <Cards
-        cardsData={this.props.cardsData}
-        isLoading={this.props.isLoading}
         isPopUpVisible={this.props.isPopUpVisible}
+        collectionData={this.props.collectionData}
+        collectionIsLoading={this.props.collectionIsLoading}
       />
     );
   }
@@ -22,9 +22,9 @@ class CardsContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    cardsData: getСardsData(state),
-    isLoading: getIsLoadingState(state),
-    isPopUpVisible: getPopUpIsVisibleState(state)
+    isPopUpVisible: getPopUpIsVisibleState(state),
+    collectionData: getCollectionData(state),
+    collectionIsLoading: getCollectionIsLoading(state)
   };
 };
 

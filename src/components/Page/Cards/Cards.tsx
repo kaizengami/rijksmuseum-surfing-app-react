@@ -3,43 +3,41 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 //import CardContainer from "./Card/CardContainer";
-import { Spinner } from "../../LoadingAnimation";
+import { Spinner } from "components/LoadingAnimation/index";
 
 import { CardsWrapper } from "./cards.styles";
 import { Props, State } from "./cards.interface";
 import Card from "./Card/Card";
 
 import { setPopUpIsVisibleState, setPopUpData } from "../PopUp/popup.actions";
+import {
+  getPopUpIsVisibleState,
+  getCollectionData,
+  getCollectionIsLoading
+} from "store/selectors";
 
 class Cards extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
-    this.state = {};
   }
 
   render() {
-    console.log(this.props.cardsData);
     return (
       <>
         <CardsWrapper isPopUpVisible={this.props.isPopUpVisible}>
-          {this.props.isLoading ? (
+          {this.props.collectionIsLoading ? (
             <Spinner />
           ) : (
             <>
-              {this.props.cardsData &&
-                this.props.cardsData.length &&
-                this.props.cardsData.map((cardData: any) => (
+              {this.props.collectionData &&
+                this.props.collectionData.length &&
+                this.props.collectionData.map((cardData: any) => (
                   <Card
                     cardData={cardData}
                     setPopUpIsVisibleState={this.props.setPopUpIsVisibleState}
                     setPopUpData={this.props.setPopUpData}
                     key={cardData.objectNumber}
                   />
-                  // <CardContainer
-                  //   cardData={cardData}
-                  //   key={cardData.objectNumber}
-                  // />
                 ))}
               <Link to="/detailspage">details page</Link>
             </>
@@ -50,12 +48,20 @@ class Cards extends Component<Props, State> {
   }
 }
 
+const mapStateToProps = (state: any) => {
+  return {
+    isPopUpVisible: getPopUpIsVisibleState(state),
+    collectionData: getCollectionData(state),
+    collectionIsLoading: getCollectionIsLoading(state)
+  };
+};
+
 const mapDispatchToProps = {
   setPopUpIsVisibleState,
   setPopUpData
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Cards);

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Search from "./Search";
-import { putCardsData, setLoadingState } from "../../../app.actions";
-import { setSearchKeyword } from "../filters.actions";
+import { putCardsData, setLoadingState } from "components/app.actions";
+import { setSearchKeyword } from "components/Header/Filters/filters.actions";
 
 class SearchContainer extends Component {
   render() {

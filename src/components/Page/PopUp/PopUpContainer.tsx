@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PopUp from "./PopUp";
 // import { getPopUpIsVisibleState } from "../../../store/selectors";
 //import { putCardsData, setLoadingState } from "./popup.actions";
-import { getPopUpIsVisibleState } from "../../../store/selectors";
+import { getPopUpIsVisibleState } from "store/selectors";
 
 interface Props {
   isVisible: boolean;

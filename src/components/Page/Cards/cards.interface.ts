@@ -1,7 +1,7 @@
 export interface Props {
-  isLoading: boolean;
-  cardsData: any;
   isPopUpVisible: boolean;
+  collectionIsLoading: boolean;
+  collectionData: any;
   setPopUpIsVisibleState(): void;
   setPopUpData(): void;
 }

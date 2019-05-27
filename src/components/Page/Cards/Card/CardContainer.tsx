@@ -6,7 +6,7 @@ import Card from "./Card";
 import {
   setPopUpIsVisibleState,
   setPopUpData
-} from "../../PopUp/popup.actions";
+} from "components/Page/PopUp/popup.actions";
 //import { getСardsData } from "../../../../store/selectors";
 
 interface Props {

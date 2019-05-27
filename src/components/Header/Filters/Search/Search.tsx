@@ -1,14 +1,17 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import { SearchWrapper, SearchIcon, SearchInput } from "./search.styles";
 
-import { getCards } from "../../../../utils/api";
+import { fetchCollection } from "sagas/sagas.actions";
+// import { putCardsData, setLoadingState } from "components/app.actions";
+// import { setSearchKeyword } from "components/Header/Filters/filters.actions";
 
 interface Props {
   putCardsData(value: any): object;
   setLoadingState(value: boolean): object;
   setSearchKeyword(value: any): object;
-  isLoading: boolean;
+  dispatch(action: any): void;
 }
 
 interface State {}
@@ -16,8 +19,6 @@ interface State {}
 class Search extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
-    this.state = {};
   }
 
   submitInput = (e: any) => {
@@ -32,11 +33,8 @@ class Search extends Component<Props, State> {
     }
   };
 
-  async upDateCards() {
-    this.props.setLoadingState(true);
-    let cards = await getCards();
-    this.props.putCardsData(cards);
-    this.props.setLoadingState(false);
+  upDateCards() {
+    this.props.dispatch(fetchCollection());
   }
 
   isValidName(name: string) {
@@ -63,4 +61,4 @@ class Search extends Component<Props, State> {
   }
 }
 
-export default Search;
+export default connect()(Search);

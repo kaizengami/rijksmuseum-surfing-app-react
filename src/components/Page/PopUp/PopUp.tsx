@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
-import { store } from "../../../index";
+import { store } from "index";
 
 import { PopUpWrapper, Image, BottomButtons, Button } from "./popup.styles";
 
@@ -14,8 +14,6 @@ interface State {}
 class PopUp extends Component<Props, State> {
   constructor(props: any) {
     super(props);
-
-    this.state = {};
   }
 
   onClickClose = (e: any) => {

@@ -2,15 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/AppContainer";
 import { BrowserRouter } from "react-router-dom";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
+import { watchFetchCollection } from "sagas/sagas";
 import rootReducer from "./store/reducers";
 import { Provider } from "react-redux";
 
-export const store = createStore(
+const sagaMiddleware = createSagaMiddleware();
+
+export const store: any = createStore(
   rootReducer,
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(sagaMiddleware)
+  // (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+  //   (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+sagaMiddleware.run(watchFetchCollection);
 
 ReactDOM.render(
   <BrowserRouter>

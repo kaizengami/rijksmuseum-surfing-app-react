@@ -4,6 +4,7 @@ export interface Props {
   isLoading: boolean;
   dispatch(action: any): void;
   cardsData: object;
+  data: any;
 }
 
 export interface State {}
