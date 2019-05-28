@@ -25,6 +25,7 @@ export const popUpReducer = (state = defaultState, action) => {
       return setIsVisibleState(state, action);
     case SET_POPUP_DATA:
       return setPopUpData(state, action);
+    default:
+      return state;
   }
-  return state;
 };

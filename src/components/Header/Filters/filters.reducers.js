@@ -15,6 +15,7 @@ export const filtersReducer = (state = defaultState, action) => {
   switch (action.type) {
     case SET_FILTERS_KEYWORD:
       return setFilterKeyword(state, action);
+    default:
+      return state;
   }
-  return state;
 };

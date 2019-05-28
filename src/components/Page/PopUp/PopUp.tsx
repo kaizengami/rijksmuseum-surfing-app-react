@@ -4,20 +4,21 @@ import { connect } from "react-redux";
 import { store } from "index";
 
 import { PopUpWrapper, Image, BottomButtons, Button } from "./popup.styles";
+import {
+  getCollectionDetailsData,
+  getCollectionDetailsIsLoading
+} from "store/selectors";
 
 interface Props {
   isVisible: boolean;
+  getCollectionDetailsData: any;
+  getCollectionDetailsIsLoading: any;
 }
 
 interface State {}
 
 class PopUp extends Component<Props, State> {
-  constructor(props: any) {
-    super(props);
-  }
-
   onClickClose = (e: any) => {
-    console.log("close popup " + e.target.value);
     store.dispatch({ type: "SET_POPUP_ISVISIBLE_STATE", payload: false });
   };
   onClickShowDetails = (e: any) => {
@@ -27,18 +28,18 @@ class PopUp extends Component<Props, State> {
   };
 
   render() {
-    let storeData = store.getState();
-    let popUpData = storeData.popUp.popUpData;
+    let popUpData = this.props.getCollectionDetailsData;
     let imageUrl;
     if (popUpData != null) {
       imageUrl = popUpData.webImage.url;
     }
-    //let url = popUpData.webImage.url
-    console.log(popUpData);
     return this.props.isVisible
       ? ReactDOM.createPortal(
           <PopUpWrapper>
+            {this.props.getCollectionDetailsIsLoading && <div>Loading...</div>}
+
             <Image src={imageUrl} />
+
             <BottomButtons>
               <Button value="close" onClick={(e: any) => this.onClickClose(e)}>
                 close
@@ -57,4 +58,14 @@ class PopUp extends Component<Props, State> {
   }
 }
 
-export default connect()(PopUp);
+const mapStateToProps = (state: any) => {
+  return {
+    getCollectionDetailsData: getCollectionDetailsData(state),
+    getCollectionDetailsIsLoading: getCollectionDetailsIsLoading(state)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(PopUp);

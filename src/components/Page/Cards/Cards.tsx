@@ -17,10 +17,6 @@ import {
 } from "store/selectors";
 
 class Cards extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render() {
     return (
       <>

@@ -17,6 +17,7 @@ export const SearchInput = styled.input`
   height: 30px;
   padding: 0 60px;
   background-color: #465a63;
+  box-shadow: inset 0 0 3px #000000;
   border: none;
   color: white;
   ::placeholder,
@@ -26,6 +27,13 @@ export const SearchInput = styled.input`
   &:before {
     position: absolute;
     content: "&#8981;";
+  }
+  &:focus {
+    box-shadow: inset 0 0 5px #000000;
+    outline: 0;
+    ::-webkit-input-placeholder {
+      color: #ffffff59;
+    }
   }
 `;
 

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-//import { store } from "../../../../index";
-import { getCardDetails } from "utils/api";
 import { fetchCollectionDetails } from "sagas/sagas.actions";
 
 import { CardWrapper, HeaderImage, LongTitle, CardLink } from "./card.styles";
@@ -14,17 +12,12 @@ class Card extends Component<Props, State> {
     this.state = {};
   }
 
-  onClickCard = (e: any, fakeObjectNumber: string) => {
-    // let objectNumber = e.target.closest("a");
-    // console.log(objectNumber.name);
-    this.updatePopUp(fakeObjectNumber);
+  onClickCard = (e: any, objectNumber: string) => {
+    this.updatePopUp(objectNumber);
   };
 
-  async updatePopUp(objectNumber: string) {
-    let popUpData = await getCardDetails(objectNumber);
-    this.props.setPopUpData(popUpData);
-
-    //this.props.dispatch(fetchCollectionDetails(objectNumber));
+  updatePopUp(objectNumber: string) {
+    this.props.dispatch(fetchCollectionDetails(objectNumber));
     this.props.setPopUpIsVisibleState(true);
   }
 

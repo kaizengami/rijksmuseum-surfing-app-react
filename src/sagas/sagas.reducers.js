@@ -7,16 +7,22 @@ import {
   REQUESTED_COLLECTION_DETAILS_FAILED
 } from "./sagas.actions";
 
-const initialState = {
+const initialStateСollection = {
   data: [],
   loading: false,
-  error: false,
-  collectionDetailsData: [],
-  collectionDetailsLoading: false,
-  collectionDetailsError: false
+  error: false
 };
 
-export const sagaReducer = (state = initialState, action) => {
+const initialStateСollectionDetails = {
+  data: null,
+  loading: false,
+  error: false
+};
+
+export const sagaСollectionReducer = (
+  state = initialStateСollection,
+  action
+) => {
   switch (action.type) {
     case REQUESTED_COLLECTION:
       return {
@@ -36,24 +42,33 @@ export const sagaReducer = (state = initialState, action) => {
         loading: false,
         error: true
       };
+    default:
+      return state;
+  }
+};
 
+export const sagaСollectionDetailsReducer = (
+  state = initialStateСollectionDetails,
+  action
+) => {
+  switch (action.type) {
     case REQUESTED_COLLECTION_DETAILS:
       return {
-        collectionDetailsData: [],
-        collectionDetailsLoading: true,
-        collectionDetailsError: false
+        data: null,
+        loading: true,
+        error: false
       };
     case REQUESTED_COLLECTION_DETAILS_SUCCEEDED:
       return {
-        collectionDetailsData: action.data,
-        collectionDetailsLoading: false,
-        collectionDetailsError: false
+        data: action.data,
+        loading: false,
+        error: false
       };
     case REQUESTED_COLLECTION_DETAILS_FAILED:
       return {
-        collectionDetailsData: [],
-        collectionDetailsLoading: false,
-        collectionDetailsError: true
+        data: null,
+        loading: false,
+        error: true
       };
     default:
       return state;

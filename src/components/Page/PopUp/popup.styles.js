@@ -1,4 +1,14 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const popUp = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
 
 export const PopUpWrapper = styled.div`
   position: absolute;
@@ -13,6 +23,11 @@ export const PopUpWrapper = styled.div`
   opacity: 1;
   border-radius: 6px;
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  animation-name: ${popUp};
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 `;
 
 export const Image = styled.img`
@@ -30,6 +45,7 @@ export const BottomButtons = styled.div`
 `;
 
 export const Button = styled.button`
+  font-family: "Lato";
   color: #ff7e7e;
   text-shadow: #ff7e7e 0px 0px 6px;
   text-transform: capitalize;

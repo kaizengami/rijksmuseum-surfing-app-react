@@ -2,19 +2,19 @@ import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   @font-face {
-    font-family: "Helvetica";
-    src: url("../fonts/helvetica_neue_regular.ttf");
+    font-family: 'Lato', sans-serif;;
+    src: url("https://fonts.googleapis.com/css?family=Lato&display=swap");
   }
 
   body,
   html {
-    font-family: Helvetica;
+    font-family: 'Lato';
     height: 100%;
     width: 100%;
     padding: 0;
     margin: 0;
     margin: 0px;
-    background-color: #EEEEEE;
+    background-image: linear-gradient(to bottom, #181c23, #282f3a, #384352, #4a596c, #5b6f87);
     overflow-x: hidden;
   }
 

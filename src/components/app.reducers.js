@@ -25,6 +25,7 @@ export const appReducer = (state = defaultState, action) => {
       return putCardsData(state, action);
     case SET_LOADING_STATE:
       return setLoadingState(state, action);
+    default:
+      return state;
   }
-  return state;
 };

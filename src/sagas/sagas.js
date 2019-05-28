@@ -19,9 +19,9 @@ export function* watchFetchCollection() {
   ]);
 }
 
-function* fetchCollectionAsync(cards = 10) {
+function* fetchCollectionAsync() {
   let filters = getFiltersSettings();
-  let cardsPerPage = cards;
+  let cardsPerPage = 10;
   try {
     yield put(requestCollection());
     const data = yield call(() => {
@@ -34,12 +34,14 @@ function* fetchCollectionAsync(cards = 10) {
   }
 }
 
-function* fetchCollectionDetailsAsync(objectNumber) {
+function* fetchCollectionDetailsAsync(param) {
   try {
     yield put(requestCollectionDetails());
     const data = yield call(() => {
       return fetch(
-        `https://www.rijksmuseum.nl/api/nl/collection/${objectNumber}?key=${API_KEY}&format=json`
+        `https://www.rijksmuseum.nl/api/nl/collection/${
+          param.objectNumber
+        }?key=${API_KEY}&format=json`
       ).then(res => res.json());
     });
     yield put(requestCollectionDetailsSuccess(data));
@@ -47,21 +49,3 @@ function* fetchCollectionDetailsAsync(objectNumber) {
     yield put(requestCollectionDetailsError());
   }
 }
-
-// function* getCollectionDetails (objectNumber)  {
-//   const COLLECTION_API_LINK = `https://www.rijksmuseum.nl/api/nl/collection/${objectNumber}?key=${API_KEY}&format=json`;
-//   try {
-//     const response = await fetch(COLLECTION_API_LINK);
-//     if (!response.ok) {
-//       throw new Error(response.statusText);
-//     }
-//     let data = await response.json();
-//     console.log(data);
-//     return data.artObject;
-//   } catch (err) {
-//     return err;
-//   }
-// };
-
-//export { getCollection, getCollectionDetails };
-//export default function connect(mapStateToProps, mapDispatchToProps)(log);

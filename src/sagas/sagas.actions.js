@@ -33,7 +33,7 @@ export const requestCollectionDetails = () => {
 export const requestCollectionDetailsSuccess = data => {
   return {
     type: "REQUESTED_COLLECTION_DETAILS_SUCCEEDED",
-    collectionDetailsData: data.artObject
+    data: data.artObject
   };
 };
 
@@ -41,6 +41,6 @@ export const requestCollectionDetailsError = () => {
   return { type: "REQUESTED_COLLECTION_DETAILS_FAILED" };
 };
 
-export const fetchCollectionDetails = () => {
-  return { type: "FETCHED_COLLECTION_DETAILS" };
+export const fetchCollectionDetails = objectNumber => {
+  return { type: "FETCHED_COLLECTION_DETAILS", objectNumber };
 };

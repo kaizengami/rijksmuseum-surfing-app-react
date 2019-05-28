@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import App from "./App";
 import { putCardsData, setLoadingState } from "./app.actions";
 import { getСardsData, getIsLoadingState } from "store/selectors";
-import { requestCollectionSuccess } from "sagas/sagas.actions";
 
 interface Props {
   putCardsData(value: CardsData): object;
@@ -26,10 +25,6 @@ interface CardsData {
 interface State {}
 
 class AppContainer extends Component<Props, State> {
-  // componentDidMount = () => {
-  //   this.props.dispatch({ type: "HELLO_THERE", payload: { "1": "1111" } });
-  // };
-
   render() {
     return (
       <App

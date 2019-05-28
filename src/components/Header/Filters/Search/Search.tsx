@@ -17,10 +17,6 @@ interface Props {
 interface State {}
 
 class Search extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   submitInput = (e: any) => {
     const value = e.target.value;
     const enterCode = 13;

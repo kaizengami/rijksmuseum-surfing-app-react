@@ -13,7 +13,7 @@ import { Props, State } from "./app.interface";
 import { GlobalStyles, AppWrapper, PageWrapper } from "./app.styles";
 
 class App extends Component<Props, State> {
-  async componentDidMount() {
+  componentDidMount() {
     // this.props.setLoadingState(true);
     // let cards = await getCards();
     // this.props.putCardsData(cards);
