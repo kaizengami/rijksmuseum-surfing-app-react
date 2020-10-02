@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-//import CardContainer from "./Card/CardContainer";
 import { Spinner } from "components/LoadingAnimation/index";
 
 import { CardsWrapper } from "./cards.styles";
@@ -13,7 +12,7 @@ import { setPopUpIsVisibleState, setPopUpData } from "../PopUp/popup.actions";
 import {
   getPopUpIsVisibleState,
   getCollectionData,
-  getCollectionIsLoading
+  getCollectionIsLoading,
 } from "store/selectors";
 
 class Cards extends Component<Props, State> {
@@ -48,16 +47,13 @@ const mapStateToProps = (state: any) => {
   return {
     isPopUpVisible: getPopUpIsVisibleState(state),
     collectionData: getCollectionData(state),
-    collectionIsLoading: getCollectionIsLoading(state)
+    collectionIsLoading: getCollectionIsLoading(state),
   };
 };
 
 const mapDispatchToProps = {
   setPopUpIsVisibleState,
-  setPopUpData
+  setPopUpData,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Cards);
+export default connect(mapStateToProps, mapDispatchToProps)(Cards);

@@ -13,19 +13,15 @@ import { Props, State } from "./app.interface";
 import { GlobalStyles, AppWrapper, PageWrapper } from "./app.styles";
 
 class App extends Component<Props, State> {
-  componentDidMount() {
-    // this.props.setLoadingState(true);
-    // let cards = await getCards();
-    // this.props.putCardsData(cards);
-    // this.props.setLoadingState(false);
+  componentDidMount(): void {
     this.props.dispatch(fetchCollection());
   }
 
-  cardsPage = () => {
+  cardsPage = (): JSX.Element => {
     return <Cards />;
   };
 
-  render() {
+  render(): JSX.Element {
     return (
       <>
         <GlobalStyles />

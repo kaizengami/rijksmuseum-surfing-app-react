@@ -12,20 +12,20 @@ class Card extends Component<Props, State> {
     this.state = {};
   }
 
-  onClickCard = (e: any, objectNumber: string) => {
+  onClickCard = (e: any, objectNumber: string): void => {
     this.updatePopUp(objectNumber);
   };
 
-  updatePopUp(objectNumber: string) {
+  updatePopUp(objectNumber: string): void {
     this.props.dispatch(fetchCollectionDetails(objectNumber));
     this.props.setPopUpIsVisibleState(true);
   }
 
-  render() {
+  render(): JSX.Element {
     const {
       headerImage: { url },
       longTitle,
-      objectNumber
+      objectNumber,
     } = this.props.cardData;
     return (
       <>
