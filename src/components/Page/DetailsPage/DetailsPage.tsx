@@ -7,17 +7,7 @@ const Wrapper = styled.header`
   text-align: center;
 `;
 
-interface Props {}
-
-interface State {}
-
-class DetailsPage extends Component<Props, State> {
-  constructor(props: any) {
-    super(props);
-
-    this.state = {};
-  }
-
+class DetailsPage extends Component {
   render() {
     return (
       <>

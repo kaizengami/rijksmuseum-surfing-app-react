@@ -6,25 +6,23 @@ import { store } from "index";
 import { PopUpWrapper, Image, BottomButtons, Button } from "./popup.styles";
 import {
   getCollectionDetailsData,
-  getCollectionDetailsIsLoading
+  getCollectionDetailsIsLoading,
 } from "store/selectors";
 
 interface Props {
   isVisible: boolean;
-  getCollectionDetailsData: any;
-  getCollectionDetailsIsLoading: any;
+  getCollectionDetailsData?: any;
+  getCollectionDetailsIsLoading?: any;
 }
 
 interface State {}
 
 class PopUp extends Component<Props, State> {
-  onClickClose = (e: any) => {
+  onClickClose = () => {
     store.dispatch({ type: "SET_POPUP_ISVISIBLE_STATE", payload: false });
   };
-  onClickShowDetails = (e: any) => {
+  onClickShowDetails = () => {
     console.log("Show Details");
-    //hashHistory.push("/detailspage");
-    //store.dispatch({ type: "SET_POPUP_ISVISIBLE_STATE", payload: false });
   };
 
   render() {
@@ -41,13 +39,10 @@ class PopUp extends Component<Props, State> {
             <Image src={imageUrl} />
 
             <BottomButtons>
-              <Button value="close" onClick={(e: any) => this.onClickClose(e)}>
+              <Button value="close" onClick={() => this.onClickClose()}>
                 close
               </Button>
-              <Button
-                value="close"
-                onClick={(e: any) => this.onClickShowDetails(e)}
-              >
+              <Button value="close" onClick={() => this.onClickShowDetails()}>
                 view details
               </Button>
             </BottomButtons>
@@ -61,11 +56,8 @@ class PopUp extends Component<Props, State> {
 const mapStateToProps = (state: any) => {
   return {
     getCollectionDetailsData: getCollectionDetailsData(state),
-    getCollectionDetailsIsLoading: getCollectionDetailsIsLoading(state)
+    getCollectionDetailsIsLoading: getCollectionDetailsIsLoading(state),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(PopUp);
+export default connect(mapStateToProps, null)(PopUp);

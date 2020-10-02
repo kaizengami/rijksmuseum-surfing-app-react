@@ -22,10 +22,8 @@ interface CardsData {
   };
 }
 
-interface State {}
-
-class AppContainer extends Component<Props, State> {
-  render() {
+class AppContainer extends Component<Props> {
+  render(): JSX.Element {
     return (
       <App
         putCardsData={this.props.putCardsData}
@@ -42,16 +40,13 @@ const mapStateToProps = (state: any) => {
   return {
     cardsData: getСardsData(state),
     isLoading: getIsLoadingState(state),
-    data: state.saga
+    data: state.saga,
   };
 };
 
 const mapDispatchToProps = {
   putCardsData,
-  setLoadingState
+  setLoadingState,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

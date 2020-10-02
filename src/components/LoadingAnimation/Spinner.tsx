@@ -1,9 +1,7 @@
 import "./Spinner.scss";
 import React from "react";
 
-interface Props {}
-
-function Dots(props: Props) {
+function Dots() {
   return (
     <div className="lds-ellipsis">
       <div />
